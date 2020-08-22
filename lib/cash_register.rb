@@ -19,7 +19,7 @@ class CashRegister
             @items << title
             count += 1
         end
-        @previous_item << self
+        @previous_item = price * quantity
     end
 
     def apply_discount
@@ -37,11 +37,6 @@ class CashRegister
     end
 
     def void_last_transaction
-        @items.pop
-        @total -= @previous_item[-1].price
-        @previous_item.pop
-        if @previous_item.length < 1
-            @total = 0.0
-        end
+        @total -= @previous_item
     end
 end
